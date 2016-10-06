@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="700.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="name.javalex.controllers.MainController">
+    <MenuBar>
+        <menus>
+            <Menu mnemonicParsing="false" text="File">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#test" text="Import XML..." />
+                    <SeparatorMenuItem mnemonicParsing="false" />
+                    <MenuItem mnemonicParsing="false" onAction="#exportXML" text="Export XML..." />
+                    <MenuItem mnemonicParsing="false" text="Export XLS..." />
+                    <SeparatorMenuItem mnemonicParsing="false" />
+                    <MenuItem mnemonicParsing="false" text="Close" onAction="#closeMain"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Refresh Info" />
+                    <MenuItem mnemonicParsing="false" text="Remove Duplicates" />
+                    <MenuItem mnemonicParsing="false" text="Compare with imported XML" />
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+    <ButtonBar buttonOrder="" prefHeight="42.0" prefWidth="600.0">
+        <buttons>
+            <Button mnemonicParsing="false" onAction="#updateSystemProcesses" prefHeight="30.0" prefWidth="192.0" text="Refresh Info" />
+            <Button mnemonicParsing="false" onAction="#removeDuplicates" prefHeight="30.0" prefWidth="192.0" text="Remove Duplicates" />
+            <Button fx:id="btnCompare" disable="false" mnemonicParsing="false" onAction="#compare" prefHeight="30.0" prefWidth="192.0" text="Compare" />
+        </buttons>
+        <VBox.margin>
+            <Insets right="6.0" />
+    </VBox.margin>
+    </ButtonBar>
+    <TableView fx:id="tableTasks" prefHeight="628.0" prefWidth="600.0">
+        <columns>
+            <TableColumn fx:id="nameColumn" prefWidth="330.0" resizable="false" text="Name" />
+            <TableColumn fx:id="pidColumn" prefWidth="110.0" resizable="false" text="PID" />
+            <TableColumn fx:id="usedMemoryColumn" prefWidth="151.0" resizable="false" text="Used Memory (KB)" />
+        </columns>
+    </TableView>
+</VBox>

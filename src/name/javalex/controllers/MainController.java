@@ -1,12 +1,17 @@
 package name.javalex.controllers;
 
+import javafx.fxml.FXML;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import name.javalex.entities.Process;
 import name.javalex.entities.SimplifiedProcess;
 import name.javalex.logic.Model;
@@ -16,9 +21,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class Controller {
+public class MainController {
 
-    private List<Process> processes;
+    static List<Process> processes;
+
     private List<SimplifiedProcess> simpleProcesses;
     private Model model = new Model();
     private XMLHandler xml = new XMLHandler();
@@ -37,6 +43,7 @@ public class Controller {
 
     @FXML
     private void initialize() throws IOException {
+
         getSystemProcesses();
 
         // set type and value for the column
@@ -46,6 +53,8 @@ public class Controller {
 
         // fill table with data
         tableTasks.setItems(FXCollections.observableArrayList(processes));
+
+
     }
 
     private void getSystemProcesses() throws IOException {
@@ -108,5 +117,23 @@ public class Controller {
     @FXML
     private void test() {
         xml.read();
+    }
+
+    @FXML
+    private void compare(ActionEvent event) throws IOException{
+        Stage compareStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("../views/compare-view.fxml"));
+        compareStage.setTitle("TaskHelper");
+        compareStage.setResizable(false);
+        compareStage.setScene(new Scene(root, 600, 700));
+        compareStage.initModality(Modality.WINDOW_MODAL);
+        compareStage.initOwner(tableTasks.getScene().getWindow());
+        compareStage.show();
+    }
+
+    @FXML
+    public void closeMain() {
+        Stage stage = (Stage) tableTasks.getScene().getWindow();
+        stage.close();
     }
 }

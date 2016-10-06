@@ -17,11 +17,11 @@ public class SimplifiedProcess {
         this.name = name;
     }
 
-    public long getUsedMemory() {
+    public long getMemory() {
         return memory;
     }
 
-    public void setUsedMemory(long usedMemory) {
+    public void setMemory(long memory) {
         this.memory = memory;
     }
 

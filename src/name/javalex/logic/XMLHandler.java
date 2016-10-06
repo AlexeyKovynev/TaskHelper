@@ -13,6 +13,7 @@ import javax.xml.transform.dom.*;
 import javax.xml.transform.stream.*;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class XMLHandler {
@@ -45,7 +46,7 @@ public class XMLHandler {
 
                 // Create element "memory" and place it under task
                 Element memory = generatedDocument.createElement("memory");
-                memory.appendChild(generatedDocument.createTextNode(String.valueOf(sp.getUsedMemory()) + " KB"));
+                memory.appendChild(generatedDocument.createTextNode(String.valueOf(sp.getMemory()) + " KB"));
                 task.appendChild(memory);
             }
 
@@ -73,7 +74,9 @@ public class XMLHandler {
         }
     }
 
-    public void read() {
+    public List<SimplifiedProcess> read() {
+        SimplifiedProcess openedProcess;
+        List<SimplifiedProcess> openedList = new ArrayList<>();
 
         try {
 
@@ -88,17 +91,18 @@ public class XMLHandler {
 
             NodeList nodeList = importedDocument.getElementsByTagName("task");
 
-            System.out.println("----------------------------");
-
             for (int temp = 0; temp < nodeList.getLength(); temp++) {
 
                 Node nNode = nodeList.item(temp);
 
-                System.out.println("\nCurrent Element :" + nNode.getNodeName());
-
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                     Element eElement = (Element) nNode;
+
+                    String name = eElement.getElementsByTagName("name").item(0).getTextContent();
+                    String memory = eElement.getElementsByTagName("memory").item(0).getTextContent().replace(" KB", "");
+                    openedProcess = new SimplifiedProcess(name, Long.valueOf(memory));
+                    openedList.add(openedProcess);
 
                     System.out.println("Name : " + eElement.getElementsByTagName("name").item(0).getTextContent());
                     System.out.println("Memory : " + eElement.getElementsByTagName("memory").item(0).getTextContent());
@@ -108,6 +112,11 @@ public class XMLHandler {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return openedList;
+    }
+
+    public void getCollectionFromXML() {
+
     }
 
 }
