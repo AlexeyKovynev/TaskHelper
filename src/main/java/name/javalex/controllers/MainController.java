@@ -2,7 +2,7 @@ package name.javalex.controllers;
 
 import javafx.fxml.FXML;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,13 +26,12 @@ import java.util.List;
 
 public class MainController {
 
-    static List<Process> processes;
-    static List<SimplifiedProcess> importedProcesses;
+    static List<Process> PROCESSES;
+    static List<SimplifiedProcess> IMPORTED_PROCESSES;
 
     private List<SimplifiedProcess> simpleProcesses;
     private Model model = new Model();
     private XMLHandler xml = new XMLHandler();
-    private XLSXHandler xlsx;
 
     @FXML
     private Button btnCompare;
@@ -63,19 +62,19 @@ public class MainController {
         usedMemoryColumn.setCellValueFactory(new PropertyValueFactory<>("usedMemory"));
 
         // fill table with data
-        tableTasks.setItems(FXCollections.observableArrayList(processes));
+        tableTasks.setItems(FXCollections.observableArrayList(PROCESSES));
 
 
     }
 
     private void getSystemProcesses() throws IOException {
-        processes = model.sortByMemory(model.getProcesses());
+        PROCESSES = model.sortByMemory(model.getProcesses());
         System.out.println("getSystemProcesses");
-        System.out.println(processes);
+        System.out.println(PROCESSES);
     }
 
     @FXML
-    private void exportXML(ActionEvent event) {
+    public void exportXML() {
         FileChooser fileChooser = new FileChooser();
 
         //Set extension filter
@@ -86,17 +85,17 @@ public class MainController {
         File file = fileChooser.showSaveDialog(tableTasks.getScene().getWindow());
 
         if (file != null) {
-            processes = model.groupByName(processes);
-            simpleProcesses = model.createSimplifiedProcessList(processes);
+            PROCESSES = model.groupByName(PROCESSES);
+            simpleProcesses = model.createSimplifiedProcessList(PROCESSES);
             xml.create(simpleProcesses);
             xml.write(file.getAbsolutePath());
             System.out.println("printXMLToConsole");
-            System.out.println(processes);
+            System.out.println(PROCESSES);
         }
     }
 
     @FXML
-    private void importXML(ActionEvent event) {
+    public void importXML() {
         FileChooser fileChooser = new FileChooser();
 
         //Set extension filter
@@ -106,33 +105,33 @@ public class MainController {
         fileChooser.setTitle("Open File");
         File file = fileChooser.showOpenDialog(tableTasks.getScene().getWindow());
         if (file != null) {
-            importedProcesses = xml.read(file.getAbsolutePath());
+            IMPORTED_PROCESSES = xml.read(file.getAbsolutePath());
             btnCompare.setDisable(false);
             btnMenuCompare.setDisable(false);
         }
     }
 
     @FXML
-    private void updateSystemProcesses() {
+    public void updateSystemProcesses() {
         tableTasks.getItems().clear();
-        processes = model.sortByMemory(model.getProcesses());
-        tableTasks.setItems(FXCollections.observableArrayList(processes));
+        PROCESSES = model.sortByMemory(model.getProcesses());
+        tableTasks.setItems(FXCollections.observableArrayList(PROCESSES));
         System.out.println("updateSystemProcesses");
-        System.out.println(processes);
+        System.out.println(PROCESSES);
     }
 
     @FXML
-    private void removeDuplicates() {
+    public void removeDuplicates() {
         tableTasks.getItems().clear();
-        processes = model.groupByName(processes);
-        tableTasks.setItems(FXCollections.observableArrayList(processes));
+        PROCESSES = model.groupByName(PROCESSES);
+        tableTasks.setItems(FXCollections.observableArrayList(PROCESSES));
         System.out.println("removeDuplicates");
-        System.out.println(processes);
+        System.out.println(PROCESSES);
     }
 
     // Open new stage
     @FXML
-    private void compare(ActionEvent event) throws IOException {
+    public void compare() throws IOException {
         Stage compareStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/views/compare-view.fxml"));
         compareStage.setTitle("TaskHelper");
@@ -141,17 +140,16 @@ public class MainController {
         compareStage.initModality(Modality.WINDOW_MODAL);
         compareStage.initOwner(tableTasks.getScene().getWindow());
         compareStage.show();
-
     }
 
     @FXML
-    private void closeMain() {
+    public void closeMain() {
         Stage stage = (Stage) tableTasks.getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    private void exportXLSX(ActionEvent event) {
+    public void exportXLSX() {
         FileChooser fileChooser = new FileChooser();
 
         //Set extension filter
@@ -162,11 +160,9 @@ public class MainController {
         File file = fileChooser.showSaveDialog(tableTasks.getScene().getWindow());
 
         if (file != null) {
-            processes = model.groupByName(processes);
-            simpleProcesses = model.createSimplifiedProcessList(processes);
-            xlsx.writeStudentsListToExcel(simpleProcesses, file.getAbsolutePath());
+            PROCESSES = model.groupByName(PROCESSES);
+            simpleProcesses = model.createSimplifiedProcessList(PROCESSES);
+            XLSXHandler.writeStudentsListToExcel(simpleProcesses, file.getAbsolutePath());
         }
-
-
     }
 }

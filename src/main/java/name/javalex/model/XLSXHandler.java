@@ -21,7 +21,6 @@ public class XLSXHandler {
     private XLSXHandler() {
     }
 
-
     public static void writeStudentsListToExcel(List<SimplifiedProcess> simplProcesses, String path) {
 
         // Using XSSF for xlsx format
@@ -42,6 +41,28 @@ public class XLSXHandler {
             //second place in row
             row.createCell(cellIndex++).setCellValue(sProc.getMemory() + " KB");
         }
+
+        // Set column width
+        tasksSheet.autoSizeColumn(0);
+        tasksSheet.autoSizeColumn(1);
+
+       // Create scatter chart
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         // Write workbook in excel file

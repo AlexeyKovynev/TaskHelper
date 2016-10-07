@@ -14,12 +14,10 @@ import java.util.List;
 
 public class Model {
 
-    private List<Process> processes;
-    private List<Process> groupedProcesses;
-
+    // This method will be replaced with CSV parsing instead of list because of easiest multi-language support
     public List<Process> getProcesses() {
 
-        processes = new ArrayList();
+        List<Process> processes = new ArrayList();
 
         String line;
         String name = "";
@@ -79,7 +77,7 @@ public class Model {
         // Sort input processes by name
         proc = sortByName(proc);
 
-        groupedProcesses = new ArrayList<>();
+        List<Process> groupedProcesses = new ArrayList<>();
 
         for (Process aProc : proc) {
 
@@ -103,7 +101,7 @@ public class Model {
     public List<Process> sortByMemory(List<Process> proc) {
         Collections.sort(proc, new ProcessMemoryComparator());
 
-        // I decided to sort by memory in reverse order (from large to small), I will ask next time :)
+        // I decided to sort by memory in reverse order (from large to small)
         Collections.reverse(proc);
         return proc;
     }
@@ -126,16 +124,13 @@ public class Model {
         long result = currentMemory - openedMemory;
         String conclusion = "";
         if (result > 0) {
-            conclusion = "Now this process uses " + result + " KB more than it did when you saved the report";
+            conclusion = "Now this process uses " + result + " KB more than it did when selected report was made";
         } else if (result < 0) {
             result = Math.abs(result);
-            conclusion = "Now this process uses " + result + " KB less than it did when you saved the report";
+            conclusion = "Now this process uses " + result + " KB less than it did when selected report was made";
         } else {
-            conclusion = "This process uses same memory amount as it did when you saved the report";
+            conclusion = "This process uses same memory amount as it did when selected report was made";
         }
         return conclusion;
     }
-
-    //public
-
 }

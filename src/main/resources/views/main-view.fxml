@@ -13,25 +13,19 @@
 
 <VBox prefHeight="700.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="name.javalex.controllers.MainController">
     <MenuBar>
-        <menus>
             <Menu mnemonicParsing="false" text="File">
-                <items>
                     <MenuItem mnemonicParsing="false" onAction="#importXML" text="Import XML..." />
                     <SeparatorMenuItem mnemonicParsing="false" />
                     <MenuItem mnemonicParsing="false" onAction="#exportXML" text="Export XML..." />
                     <MenuItem mnemonicParsing="false" onAction="#exportXLSX" text="Export XLS..." />
                     <SeparatorMenuItem mnemonicParsing="false" />
                     <MenuItem mnemonicParsing="false" text="Close" onAction="#closeMain"/>
-                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Edit">
-                <items>
                     <MenuItem mnemonicParsing="false" onAction="#updateSystemProcesses" text="Refresh Info" />
                     <MenuItem mnemonicParsing="false" onAction="#removeDuplicates" text="Remove Duplicates" />
                     <MenuItem mnemonicParsing="false" fx:id="btnMenuCompare" disable="true" onAction="#compare" text="Compare with imported XML" />
-                </items>
             </Menu>
-        </menus>
     </MenuBar>
     <ButtonBar buttonOrder="" prefHeight="42.0" prefWidth="600.0">
         <buttons>
@@ -43,7 +37,7 @@
             <Insets right="6.0" />
     </VBox.margin>
     </ButtonBar>
-    <TableView fx:id="tableTasks" prefHeight="628.0" prefWidth="600.0">
+    <TableView fx:id="tableTasks" prefHeight="640.0" prefWidth="600.0">
         <columns>
             <TableColumn fx:id="nameColumn" prefWidth="330.0" resizable="false" text="Name" />
             <TableColumn fx:id="pidColumn" prefWidth="110.0" resizable="false" text="PID" />

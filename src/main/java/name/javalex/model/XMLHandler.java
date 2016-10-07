@@ -86,9 +86,6 @@ public class XMLHandler {
             importedDocument = documentBuilder.parse(fXmlFile);
 
             importedDocument.getDocumentElement().normalize();
-
-            System.out.println("Root element :" + importedDocument.getDocumentElement().getNodeName());
-
             NodeList nodeList = importedDocument.getElementsByTagName("task");
 
             for (int temp = 0; temp < nodeList.getLength(); temp++) {
@@ -103,7 +100,6 @@ public class XMLHandler {
                     String memory = eElement.getElementsByTagName("memory").item(0).getTextContent().replace(" KB", "");
                     openedProcess = new SimplifiedProcess(name, Long.valueOf(memory));
                     openedList.add(openedProcess);
-
                 }
             }
         } catch (Exception e) {
@@ -111,9 +107,4 @@ public class XMLHandler {
         }
         return openedList;
     }
-
-    public void getCollectionFromXML() {
-
-    }
-
 }

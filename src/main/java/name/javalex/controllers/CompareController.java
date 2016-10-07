@@ -1,7 +1,6 @@
 package name.javalex.controllers;
 
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -9,7 +8,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import name.javalex.entities.SimplifiedProcess;
 import name.javalex.model.Model;
-import name.javalex.model.XMLHandler;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,7 +15,6 @@ import java.util.List;
 public class CompareController {
 
     private Model model = new Model();
-    //private XMLHandler xml = new XMLHandler();
     private List<SimplifiedProcess> currentSProcesses;
 
     @FXML
@@ -69,38 +66,32 @@ public class CompareController {
 
         getCurrentSimplifiedProcesses();
 
-        ChangeListener openedTasksTableListener = new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                if (newValue != null) {
-                    SimplifiedProcess openedProc = openedTasks.getSelectionModel().getSelectedItem();
-                    lbOpenedVal.setText("Yes");
-                    lbOpenedNameVal.setText(openedProc.getName());
-                    lbOpenedMemVal.setText(openedProc.getMemory() + " KB");
-                    if (currentSProcesses.contains(openedProc)) {
-                        setValuesToCurrent(openedProc);
-                    } else {
-                        setCurrentNotAvailable();
-                        lbConclusion.setText("Process is not running now");
-                    }
+        ChangeListener openedTasksTableListener = (observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                SimplifiedProcess openedProc = openedTasks.getSelectionModel().getSelectedItem();
+                lbOpenedVal.setText("Yes");
+                lbOpenedNameVal.setText(openedProc.getName());
+                lbOpenedMemVal.setText(openedProc.getMemory() + " KB");
+                if (currentSProcesses.contains(openedProc)) {
+                    setValuesToCurrent(openedProc);
+                } else {
+                    setCurrentNotAvailable();
+                    lbConclusion.setText("Process is not running now");
                 }
             }
         };
 
-        ChangeListener currentTasksTableListener = new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                if (newValue != null) {
-                    SimplifiedProcess runningProc = currentTasks.getSelectionModel().getSelectedItem();
-                    lbCurrVal.setText("Yes");
-                    lbCurrNameVal.setText(runningProc.getName());
-                    lbCurrMemVal.setText(runningProc.getMemory() + " KB");
-                    if (MainController.importedProcesses.contains(runningProc)) {
-                        setValuesToOpened(runningProc);
-                    } else {
-                        setOpenedNotAvailable();
-                        lbConclusion.setText("Current process was not launched when you made selected report");
-                    }
+        ChangeListener currentTasksTableListener = (observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                SimplifiedProcess runningProc = currentTasks.getSelectionModel().getSelectedItem();
+                lbCurrVal.setText("Yes");
+                lbCurrNameVal.setText(runningProc.getName());
+                lbCurrMemVal.setText(runningProc.getMemory() + " KB");
+                if (MainController.IMPORTED_PROCESSES.contains(runningProc)) {
+                    setValuesToOpened(runningProc);
+                } else {
+                    setOpenedNotAvailable();
+                    lbConclusion.setText("Current process was not launched when selected report was made");
                 }
             }
         };
@@ -113,7 +104,7 @@ public class CompareController {
         openedMemColumn.setCellValueFactory(new PropertyValueFactory<>("memory"));
 
         // fill table with data
-        openedTasks.setItems(FXCollections.observableArrayList(MainController.importedProcesses));
+        openedTasks.setItems(FXCollections.observableArrayList(MainController.IMPORTED_PROCESSES));
 
         // set type and value for the column and fill table with data
         currentNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -122,14 +113,14 @@ public class CompareController {
     }
 
     private void getCurrentSimplifiedProcesses() {
-        MainController.processes = model.groupByName(MainController.processes);
-        currentSProcesses = model.createSimplifiedProcessList(MainController.processes);
+        MainController.PROCESSES = model.groupByName(MainController.PROCESSES);
+        currentSProcesses = model.createSimplifiedProcessList(MainController.PROCESSES);
         System.out.println(currentSProcesses);
     }
 
 
     @FXML
-    private void closeCompare() {
+    public void closeCompare() {
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
     }
@@ -147,9 +138,9 @@ public class CompareController {
     private void setValuesToOpened(SimplifiedProcess runningProc) {
 
         long currentMemory = runningProc.getMemory();
-        long openedMemory = MainController.importedProcesses.get(MainController.importedProcesses.indexOf(runningProc)).getMemory();
+        long openedMemory = MainController.IMPORTED_PROCESSES.get(MainController.IMPORTED_PROCESSES.indexOf(runningProc)).getMemory();
         lbConclusion.setText(model.getMemoryDifferences(openedMemory, currentMemory));
-        lbOpenedNameVal.setText(MainController.importedProcesses.get(MainController.importedProcesses.indexOf(runningProc)).getName());
+        lbOpenedNameVal.setText(MainController.IMPORTED_PROCESSES.get(MainController.IMPORTED_PROCESSES.indexOf(runningProc)).getName());
         lbOpenedMemVal.setText(String.valueOf(openedMemory + " KB"));
         lbOpenedVal.setText("Yes");
 
