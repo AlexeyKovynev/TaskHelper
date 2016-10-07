@@ -104,9 +104,6 @@ public class XMLHandler {
                     openedProcess = new SimplifiedProcess(name, Long.valueOf(memory));
                     openedList.add(openedProcess);
 
-                    System.out.println("Name : " + eElement.getElementsByTagName("name").item(0).getTextContent());
-                    System.out.println("Memory : " + eElement.getElementsByTagName("memory").item(0).getTextContent());
-
                 }
             }
         } catch (Exception e) {

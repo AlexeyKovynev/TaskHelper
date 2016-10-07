@@ -1,5 +1,6 @@
 package name.javalex.logic;
 
+import javafx.scene.control.Label;
 import name.javalex.comparators.ProcessMemoryComparator;
 import name.javalex.comparators.ProcessNameComparator;
 import name.javalex.entities.Process;
@@ -81,18 +82,18 @@ public class Model {
 
         groupedProcesses = new ArrayList<>();
 
-        for (int i = 0; i < proc.size(); i++) {
+        for (Process aProc : proc) {
 
             if (groupedProcesses.isEmpty()) {
                 // add first element if empty
-                groupedProcesses.add(proc.get(i));
-            } else if (groupedProcesses.get(groupedProcesses.size() - 1).equals(proc.get(i))) {
+                groupedProcesses.add(aProc);
+            } else if (groupedProcesses.get(groupedProcesses.size() - 1).equals(aProc)) {
                 // increase used memory if task is already here
-                long memorySum = groupedProcesses.get(groupedProcesses.size() - 1).getUsedMemory() + proc.get(i).getUsedMemory();
+                long memorySum = groupedProcesses.get(groupedProcesses.size() - 1).getUsedMemory() + aProc.getUsedMemory();
                 groupedProcesses.get(groupedProcesses.size() - 1).setUsedMemory(memorySum);
-            } else if (!(groupedProcesses.get(groupedProcesses.size() - 1).equals(proc.get(i)))) {
+            } else if (!(groupedProcesses.get(groupedProcesses.size() - 1).equals(aProc))) {
                 // add if not already here
-                groupedProcesses.add(proc.get(i));
+                groupedProcesses.add(aProc);
             }
         }
         //System.out.println("groupByName");
@@ -120,5 +121,22 @@ public class Model {
         }
         return result;
     }
+
+    // Calculate which process uses more/less memory (opened from XML or current one)
+    public String getMemoryDifferences(long openedMemory, long currentMemory) {
+        long result = currentMemory - openedMemory;
+        String conclusion = "";
+        if (result > 0) {
+            conclusion = "Now this process uses " + result + " KB more than it did when you saved the report";
+        } else if (result < 0) {
+            result = Math.abs(result);
+            conclusion = "Now this process uses " + result + " KB less than it did when you saved the report";
+        } else {
+            conclusion = "This process uses same memory amount as it did when you saved the report";
+        }
+        return conclusion;
+    }
+
+    //public
 
 }

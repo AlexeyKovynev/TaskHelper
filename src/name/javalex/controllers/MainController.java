@@ -119,6 +119,7 @@ public class MainController {
         xml.read();
     }
 
+    // Open new stage
     @FXML
     private void compare(ActionEvent event) throws IOException{
         Stage compareStage = new Stage();
