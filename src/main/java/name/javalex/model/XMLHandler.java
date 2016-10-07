@@ -1,4 +1,4 @@
-package name.javalex.logic;
+package name.javalex.model;
 
 
 import name.javalex.entities.SimplifiedProcess;
@@ -74,13 +74,13 @@ public class XMLHandler {
         }
     }
 
-    public List<SimplifiedProcess> read() {
+    public List<SimplifiedProcess> read(String path) {
         SimplifiedProcess openedProcess;
         List<SimplifiedProcess> openedList = new ArrayList<>();
 
         try {
 
-            File fXmlFile = new File("D:\\file.xml");
+            File fXmlFile = new File(path);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = dbFactory.newDocumentBuilder();
             importedDocument = documentBuilder.parse(fXmlFile);

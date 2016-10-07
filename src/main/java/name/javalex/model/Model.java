@@ -1,6 +1,5 @@
-package name.javalex.logic;
+package name.javalex.model;
 
-import javafx.scene.control.Label;
 import name.javalex.comparators.ProcessMemoryComparator;
 import name.javalex.comparators.ProcessNameComparator;
 import name.javalex.entities.Process;
