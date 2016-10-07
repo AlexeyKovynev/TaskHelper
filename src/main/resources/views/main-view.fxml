@@ -16,19 +16,19 @@
         <menus>
             <Menu mnemonicParsing="false" text="File">
                 <items>
-                    <MenuItem mnemonicParsing="false" onAction="#test" text="Import XML..." />
+                    <MenuItem mnemonicParsing="false" onAction="#importXML" text="Import XML..." />
                     <SeparatorMenuItem mnemonicParsing="false" />
                     <MenuItem mnemonicParsing="false" onAction="#exportXML" text="Export XML..." />
-                    <MenuItem mnemonicParsing="false" text="Export XLS..." />
+                    <MenuItem mnemonicParsing="false" onAction="#exportXLSX" text="Export XLS..." />
                     <SeparatorMenuItem mnemonicParsing="false" />
                     <MenuItem mnemonicParsing="false" text="Close" onAction="#closeMain"/>
                 </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Edit">
                 <items>
-                    <MenuItem mnemonicParsing="false" text="Refresh Info" />
-                    <MenuItem mnemonicParsing="false" text="Remove Duplicates" />
-                    <MenuItem mnemonicParsing="false" text="Compare with imported XML" />
+                    <MenuItem mnemonicParsing="false" onAction="#updateSystemProcesses" text="Refresh Info" />
+                    <MenuItem mnemonicParsing="false" onAction="#removeDuplicates" text="Remove Duplicates" />
+                    <MenuItem mnemonicParsing="false" fx:id="btnMenuCompare" disable="true" onAction="#compare" text="Compare with imported XML" />
                 </items>
             </Menu>
         </menus>
@@ -37,7 +37,7 @@
         <buttons>
             <Button mnemonicParsing="false" onAction="#updateSystemProcesses" prefHeight="30.0" prefWidth="192.0" text="Refresh Info" />
             <Button mnemonicParsing="false" onAction="#removeDuplicates" prefHeight="30.0" prefWidth="192.0" text="Remove Duplicates" />
-            <Button fx:id="btnCompare" disable="false" mnemonicParsing="false" onAction="#compare" prefHeight="30.0" prefWidth="192.0" text="Compare" />
+            <Button fx:id="btnCompare" disable="true" mnemonicParsing="false" onAction="#compare" prefHeight="30.0" prefWidth="192.0" text="Compare" />
         </buttons>
         <VBox.margin>
             <Insets right="6.0" />
