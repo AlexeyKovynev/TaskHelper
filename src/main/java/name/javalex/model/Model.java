@@ -20,50 +20,33 @@ public class Model {
         List<Process> processes = new ArrayList();
 
         String line;
-        String name = "";
-        int pid = 0;
-        long memory = 0;
-        int counter = 0;
+        String csvSplitter = "\",\"";
+
+        String name;
+        int pid;
+        long memory;
 
         try {
 
             // Get system processes
-            java.lang.Process p = null;
-
-            p = Runtime.getRuntime().exec("tasklist /fo \"list\"");
+            java.lang.Process p;
+            p = Runtime.getRuntime().exec("TASKLIST /FO \"CSV\" /NH");
 
             BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
             while ((line = input.readLine()) != null) {
-                line = line.replace('\u00A0', ' ');
 
-                if (line.startsWith("Image Name")) {
-                    name = line.substring(line.lastIndexOf(":") + 1).trim();
-                } else if (line.startsWith("PID")) {
-                    line = line.substring(line.lastIndexOf(":") + 1).trim();
-                    pid = Integer.valueOf(line);
-                } else if (line.startsWith("Mem Usage")) {
-                    line = line.substring(line.lastIndexOf(":") + 1).replace(" K", "").replace(",", "").trim();
-                    memory = Long.valueOf(line);
-                }
+                String[] proc = line.split(csvSplitter);
 
-                counter++;
-
-                if (counter == 6) { // Finished with current task (each system task takes 6 lines of output)
-
-                    // Add info about handled process to collection
-                    processes.add(new Process(name, pid, memory));
-
-                    // Reset counter and values
-                    counter = 0;
-                    name = "";
-                    pid = 0;
-                    memory = 0;
-                }
+                name = proc[0].replace("\"", "");
+                pid = Integer.valueOf(proc[1]);
+                memory = Long.valueOf(proc[4].replaceAll("\\D+", ""));
+                processes.add(new Process(name, pid, memory));
             }
 
             // Close reader
             input.close();
+
         } catch (IOException e) {
             System.out.println("Error occurred while trying to get system processes " + e);
         }
@@ -93,8 +76,7 @@ public class Model {
                 groupedProcesses.add(aProc);
             }
         }
-        //System.out.println("groupByName");
-        //System.out.println(sortByMemory(groupedProcesses));
+
         return sortByMemory(groupedProcesses);
     }
 
@@ -122,7 +104,7 @@ public class Model {
     // Calculate which process uses more/less memory (opened from XML or current one)
     public String getMemoryDifferences(long openedMemory, long currentMemory) {
         long result = currentMemory - openedMemory;
-        String conclusion = "";
+        String conclusion;
         if (result > 0) {
             conclusion = "Now this process uses " + result + " KB more than it did when selected report was made";
         } else if (result < 0) {

@@ -1,11 +1,10 @@
 package name.javalex.comparators;
 
-import name.javalex.entities.Process;
+        import name.javalex.entities.Process;
 
-import java.util.Comparator;
+        import java.util.Comparator;
 
 public class ProcessMemoryComparator implements Comparator<Process> {
-
 
     @Override
     public int compare(Process process1, Process process2) {

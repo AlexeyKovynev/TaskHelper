@@ -32,6 +32,7 @@ public class MainController {
     private List<SimplifiedProcess> simpleProcesses;
     private Model model = new Model();
     private XMLHandler xml = new XMLHandler();
+    private XLSXHandler xlsx = XLSXHandler.getInstance();
 
     @FXML
     private Button btnCompare;
@@ -63,14 +64,10 @@ public class MainController {
 
         // fill table with data
         tableTasks.setItems(FXCollections.observableArrayList(PROCESSES));
-
-
     }
 
     private void getSystemProcesses() throws IOException {
         PROCESSES = model.sortByMemory(model.getProcesses());
-        System.out.println("getSystemProcesses");
-        System.out.println(PROCESSES);
     }
 
     @FXML
@@ -89,8 +86,6 @@ public class MainController {
             simpleProcesses = model.createSimplifiedProcessList(PROCESSES);
             xml.create(simpleProcesses);
             xml.write(file.getAbsolutePath());
-            System.out.println("printXMLToConsole");
-            System.out.println(PROCESSES);
         }
     }
 
@@ -116,8 +111,6 @@ public class MainController {
         tableTasks.getItems().clear();
         PROCESSES = model.sortByMemory(model.getProcesses());
         tableTasks.setItems(FXCollections.observableArrayList(PROCESSES));
-        System.out.println("updateSystemProcesses");
-        System.out.println(PROCESSES);
     }
 
     @FXML
@@ -125,8 +118,6 @@ public class MainController {
         tableTasks.getItems().clear();
         PROCESSES = model.groupByName(PROCESSES);
         tableTasks.setItems(FXCollections.observableArrayList(PROCESSES));
-        System.out.println("removeDuplicates");
-        System.out.println(PROCESSES);
     }
 
     // Open new stage
@@ -162,7 +153,7 @@ public class MainController {
         if (file != null) {
             PROCESSES = model.groupByName(PROCESSES);
             simpleProcesses = model.createSimplifiedProcessList(PROCESSES);
-            XLSXHandler.writeStudentsListToExcel(simpleProcesses, file.getAbsolutePath());
+            xlsx.writeStudentsListToExcel(simpleProcesses, file.getAbsolutePath());
         }
     }
 }

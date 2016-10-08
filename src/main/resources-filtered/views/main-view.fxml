@@ -16,8 +16,8 @@
             <Menu mnemonicParsing="false" text="File">
                     <MenuItem mnemonicParsing="false" onAction="#importXML" text="Import XML..." />
                     <SeparatorMenuItem mnemonicParsing="false" />
-                    <MenuItem mnemonicParsing="false" onAction="#exportXML" text="Export XML..." />
-                    <MenuItem mnemonicParsing="false" onAction="#exportXLSX" text="Export XLS..." />
+                    <MenuItem mnemonicParsing="false" onAction="#exportXML" text="Export to XML..." />
+                    <MenuItem mnemonicParsing="false" onAction="#exportXLSX" text="Export to MS Office Excel..." />
                     <SeparatorMenuItem mnemonicParsing="false" />
                     <MenuItem mnemonicParsing="false" text="Close" onAction="#closeMain"/>
             </Menu>

@@ -115,9 +115,7 @@ public class CompareController {
     private void getCurrentSimplifiedProcesses() {
         MainController.PROCESSES = model.groupByName(MainController.PROCESSES);
         currentSProcesses = model.createSimplifiedProcessList(MainController.PROCESSES);
-        System.out.println(currentSProcesses);
     }
-
 
     @FXML
     public void closeCompare() {

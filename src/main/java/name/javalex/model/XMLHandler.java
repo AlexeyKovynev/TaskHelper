@@ -65,9 +65,7 @@ public class XMLHandler {
 
             DOMSource source = new DOMSource(generatedDocument);
             StreamResult result = new StreamResult(new File(path));
-            //StreamResult result =  new StreamResult(System.out);
             transformer.transform(source, result);
-            System.out.println("File saved!");
 
         } catch (TransformerException ex) {
             System.out.println(ex.getMessage());
