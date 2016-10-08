@@ -25,9 +25,7 @@ public class XLSXHandler {
         Workbook workbook = null;
         try {
             workbook = new XSSFWorkbook(OPCPackage.open(getClass().getResourceAsStream("/tmp.xlsx")));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InvalidFormatException e) {
+        } catch (IOException | InvalidFormatException e) {
             e.printStackTrace();
         }
 
@@ -50,13 +48,11 @@ public class XLSXHandler {
 
             Row row = tasksSheet.createRow(rowIndex++);
 
-            int cellIndex = 1;
-
             //first place in row
-            row.createCell(cellIndex++).setCellValue(sProc.getName());
+            row.createCell(1).setCellValue(sProc.getName());
 
             //second place in row
-            row.createCell(cellIndex++).setCellValue(sProc.getMemory());
+            row.createCell(2).setCellValue(sProc.getMemory());
         }
 
         // Set column width

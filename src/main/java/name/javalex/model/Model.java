@@ -17,7 +17,7 @@ public class Model {
     // This method will be replaced with CSV parsing instead of list because of easiest multi-language support
     public List<Process> getProcesses() {
 
-        List<Process> processes = new ArrayList();
+        List<Process> processes = new ArrayList<>();
 
         String line;
         String csvSplitter = "\",\"";
