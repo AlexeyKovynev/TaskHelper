@@ -14,7 +14,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/views/main-view.fxml"));
         primaryStage.setTitle("TaskHelper");
         primaryStage.setResizable(false);
-        primaryStage.setScene(new Scene(root, 600, 700));
+        primaryStage.setScene(new Scene(root, 600, 650));
         primaryStage.show();
     }
 

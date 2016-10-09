@@ -11,7 +11,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="700.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="name.javalex.controllers.MainController">
+<VBox prefHeight="650.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="name.javalex.controllers.MainController">
     <MenuBar>
             <Menu mnemonicParsing="false" text="File">
                     <MenuItem mnemonicParsing="false" onAction="#importXML" text="Import XML..." />
@@ -37,7 +37,7 @@
             <Insets right="6.0" />
     </VBox.margin>
     </ButtonBar>
-    <TableView fx:id="tableTasks" prefHeight="640.0" prefWidth="600.0">
+    <TableView fx:id="tableTasks" prefHeight="590.0" prefWidth="600.0">
         <columns>
             <TableColumn fx:id="nameColumn" prefWidth="330.0" resizable="false" text="Name" />
             <TableColumn fx:id="pidColumn" prefWidth="110.0" resizable="false" text="PID" />

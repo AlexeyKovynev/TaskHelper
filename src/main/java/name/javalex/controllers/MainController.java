@@ -126,7 +126,7 @@ public class MainController {
         Parent root = FXMLLoader.load(getClass().getResource("/views/compare-view.fxml"));
         compareStage.setTitle("TaskHelper");
         compareStage.setResizable(false);
-        compareStage.setScene(new Scene(root, 600, 700));
+        compareStage.setScene(new Scene(root, 600, 650));
         compareStage.initModality(Modality.WINDOW_MODAL);
         compareStage.initOwner(tableTasks.getScene().getWindow());
         compareStage.show();

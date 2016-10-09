@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="700.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="name.javalex.controllers.CompareController">
+<VBox prefHeight="650.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="name.javalex.controllers.CompareController">
     <ButtonBar buttonOrder="" prefHeight="42.0" prefWidth="600.0">
         <buttons>
             <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeCompare" prefHeight="30.0" prefWidth="150.0" text="Back to main window" />
@@ -32,7 +32,7 @@
                         <Font name="Microsoft Sans Serif" size="14.0" />
                     </font>
                 </Label>
-                <TableView fx:id="openedTasks" prefHeight="580.0" prefWidth="300.0">
+                <TableView fx:id="openedTasks" prefHeight="500.0" prefWidth="300.0">
                     <columns>
                         <TableColumn fx:id="openedNameColumn" editable="false" prefWidth="189.0" resizable="false" text="Name" />
                         <TableColumn fx:id="openedMemColumn" editable="false" prefWidth="93.0" resizable="false" text="Memory (KB)" />
@@ -48,7 +48,7 @@
                         <Font name="Microsoft Sans Serif" size="14.0" />
                     </font>
                 </Label>
-                <TableView fx:id="currentTasks" prefHeight="580.0" prefWidth="300.0">
+                <TableView fx:id="currentTasks" prefHeight="500.0" prefWidth="300.0">
                     <columns>
                         <TableColumn fx:id="currentNameColumn" editable="false" prefWidth="189.0" resizable="false" text="Name" />
                         <TableColumn fx:id="currentMemColumn" editable="false" prefWidth="93.0" resizable="false" text="Memory (KB)" />
@@ -57,21 +57,21 @@
             </VBox>
         </children>
     </HBox>
-   <Pane prefHeight="100.0" prefWidth="600.0">
+   <Pane prefHeight="135.0" prefWidth="600.0">
       <children>
-         <Label fx:id="lbOpened" layoutX="14.0" layoutY="14.0" text="Present in the list:" />
-         <Label fx:id="lbCurr" layoutX="300.0" layoutY="14.0" text="Is currently running:" />
-         <Label fx:id="lbOpenedName" layoutX="14.0" layoutY="33.0" text="Process name:" />
-         <Label fx:id="lbCurrName" layoutX="300.0" layoutY="33.0" text="Process name:" />
-         <Label fx:id="lbOpenedMem" layoutX="14.0" layoutY="52.0" text="Used Memory:" />
-         <Label fx:id="lbCurrMem" layoutX="300.0" layoutY="52.0" text="Used Memory:" />
-         <Label fx:id="lbOpenedVal" layoutX="123.0" layoutY="14.0" />
-         <Label fx:id="lbOpenedNameVal" layoutX="123.0" layoutY="33.0" maxWidth="175.0" />
-         <Label fx:id="lbOpenedMemVal" layoutX="123.0" layoutY="52.0" maxWidth="170.0" />
-         <Label fx:id="lbCurrVal" layoutX="421.0" layoutY="14.0" />
-         <Label fx:id="lbCurrNameVal" layoutX="421.0" layoutY="33.0" maxWidth="175.0" />
-         <Label fx:id="lbCurrMemVal" layoutX="421.0" layoutY="52.0" maxWidth="170.0" />
-         <Label fx:id="lbConclusion" alignment="CENTER" layoutX="14.0" layoutY="71.0" prefHeight="19.0" prefWidth="573.0" textAlignment="CENTER">
+         <Label fx:id="lbOpened" layoutX="14.0" layoutY="5.0" text="Present in the list:" />
+         <Label fx:id="lbCurr" layoutX="300.0" layoutY="5.0" text="Is currently running:" />
+         <Label fx:id="lbOpenedName" layoutX="14.0" layoutY="24.0" text="Process name:" />
+         <Label fx:id="lbCurrName" layoutX="300.0" layoutY="24.0" text="Process name:" />
+         <Label fx:id="lbOpenedMem" layoutX="14.0" layoutY="43.0" text="Used Memory:" />
+         <Label fx:id="lbCurrMem" layoutX="300.0" layoutY="43.0" text="Used Memory:" />
+         <Label fx:id="lbOpenedVal" layoutX="123.0" layoutY="5.0" />
+         <Label fx:id="lbOpenedNameVal" layoutX="123.0" layoutY="24.0" maxWidth="175.0"/>
+         <Label fx:id="lbOpenedMemVal" layoutX="123.0" layoutY="43.0" maxWidth="170.0" />
+         <Label fx:id="lbCurrVal" layoutX="421.0" layoutY="5.0" />
+         <Label fx:id="lbCurrNameVal" layoutX="421.0" layoutY="24.0" maxWidth="175.0" />
+         <Label fx:id="lbCurrMemVal" layoutX="421.0" layoutY="43.0" maxWidth="170.0" />
+         <Label fx:id="lbConclusion" alignment="CENTER" layoutX="14.0" layoutY="67.0" prefHeight="19.0" prefWidth="573.0" textAlignment="CENTER">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
