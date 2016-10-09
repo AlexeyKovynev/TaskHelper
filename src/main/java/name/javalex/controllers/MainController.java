@@ -61,7 +61,6 @@ public class MainController {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         pidColumn.setCellValueFactory(new PropertyValueFactory<>("pid"));
         usedMemoryColumn.setCellValueFactory(new PropertyValueFactory<>("usedMemory"));
-        System.out.println(FXCollections.observableArrayList(PROCESSES));
         // fill table with data
         tableTasks.setItems(FXCollections.observableArrayList(PROCESSES));
     }
