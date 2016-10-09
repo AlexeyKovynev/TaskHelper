@@ -19,6 +19,15 @@ public class Process {
         this.name = name;
     }
 
+    public void setPid(int pid) {
+        this.pid = pid;
+    }
+
+    public int getPid() {
+
+        return pid;
+    }
+
     public long getUsedMemory() {
         return usedMemory;
     }

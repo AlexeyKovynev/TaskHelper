@@ -47,7 +47,7 @@ public class MainController {
     private TableColumn<Process, String> nameColumn;
 
     @FXML
-    private TableColumn<Process, Integer> pidColumn;
+    private TableColumn<Process, String> pidColumn;
 
     @FXML
     private TableColumn<Process, Long> usedMemoryColumn;
@@ -61,7 +61,7 @@ public class MainController {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         pidColumn.setCellValueFactory(new PropertyValueFactory<>("pid"));
         usedMemoryColumn.setCellValueFactory(new PropertyValueFactory<>("usedMemory"));
-
+        System.out.println(FXCollections.observableArrayList(PROCESSES));
         // fill table with data
         tableTasks.setItems(FXCollections.observableArrayList(PROCESSES));
     }
