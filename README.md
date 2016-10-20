@@ -1,5 +1,6 @@
 # TaskHelper
-Allows to get system processes, group them by name, sort by memory, export to XML and XLSX (with chart), import saved XML to compare processes with current ones
+Allows to get system processes, group them by name, sort by memory, export to XML and XLSX (with chart), import saved XML to compare processes with current ones.
+
 You can read more about it (and download JAR) in my portfolio:
 http://javalex.name/task-helper-javafx
 
