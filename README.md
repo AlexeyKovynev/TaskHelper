@@ -1,10 +1,7 @@
 # TaskHelper
 Allows to get system processes, group them by name, sort by memory, export to XML and XLSX (with chart), import saved XML to compare processes with current ones.
 
-You can read more about it (and download JAR) in my portfolio:
-http://javalex.name/task-helper-javafx
-
-You should have JRE 8 installed on your PC to run this program.
+You should have Java 8 (JRE) installed on your PC to run this program.
 Application written using JavaFX 2 and has following functions:
 - It runs "tasklist" as a console command;
 - The output of the command returned to the application and shows up the following information within the graphical user interface: Name, Process ID, Used Memory;
